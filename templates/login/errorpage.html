@@ -1,0 +1,22 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Gedmin</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Bootstrap -->
+        <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+        <link href="{% static "css/style.css" %}" rel="stylesheet">
+    </head>
+    <body>
+        <div id="gedmin">
+        GEDMIN
+        </div>  
+        <div id="logmsg">
+            <br>{{ msg }}<br>
+            <a href="/">Powrót</a>
+        </div>
+
+    </body>
+</html>

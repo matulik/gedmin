@@ -1,0 +1,68 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Gedmin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+    <link href="{% static "css/style.css" %}" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="{% static "js/bootstrap.js" %}"></script>
+    {% block scripts %}{% endblock scripts %}
+</head>
+
+<body{% block onload %}{% endblock onload %}>
+<!--  NAGŁÓWEK  -->
+<div class="”container”">
+    <h1><a href="#">GEDMIN</a></h1>
+    <strong>Gentoo Linux adminpage</strong>
+</div>
+<!--  /NAGŁÓWEK  -->
+
+
+<!--  MENU  -->
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="container">
+            <ul class="nav">
+                <li class="active"><a href="/info/">Informacje ogólne</a></li>
+                <li><a href="#">#</a></li>
+                <li><a href="/logout/">Wyloguj</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!--  /MENU  -->
+
+<!--  TREŚĆ   -->
+<div class="hero-unit">
+
+    <div class="row">
+        <!--  PODMENU  -->
+        <div class="span4">
+            <ul class="nav nav-list">
+                <li class="nav-header">Wybierz</li>
+                <li{% block system %}{% endblock system %}><a href="/info/system/">System</a></li>
+                <li{% block drives %}{% endblock drives %}><a href="/info/drives/">Napędy</a></li>
+                <li>CPU</li>
+                <li>Pamięć</li>
+                <li{% block network %}{% endblock network %}><a href="/info/network/">Sieć</a></li>
+            </ul>
+        </div>
+        <!--/PODMENU -->
+
+        <!--TREŚĆ STRONY -->
+        <div class="span8">
+            {% block content %}
+            {% endblock content %}
+        </div>
+        <!--/TREŚĆ STRONY -->
+
+    </div>
+</div>
+<!--/TREŚĆ -->
+</body>
+</html>

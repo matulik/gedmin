@@ -1,0 +1,20 @@
+{% extends "base_info.html" %}
+{% load staticfiles %}
+
+{% block scripts %}
+    <script src="{% static "js/ajax/info.js" %}"></script>
+{% endblock scripts %}
+{% block onload %} onload="system();"{% endblock onload %}
+
+{% block system %} class="active"{% endblock system %}
+
+{% block content %}
+    <div id="content">
+            Wersja jądra:
+            <div class="hl" id="kernelinfo"></div>
+            Aktualnie na serwerze jest:
+            <div class="hl" id="serverdate"></div>
+            Uptime:
+            <div class="hl" id="uptime"></div>
+    </div>
+{% endblock content %}
