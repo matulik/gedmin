@@ -1,0 +1,20 @@
+{% extends "base_info.html" %}
+{% load staticfiles %}
+
+{% block scripts %}
+    <script src="{% static "js/ajax/info.js" %}"></script>
+{% endblock scripts %}
+{% block onload %} onload="drives();"{% endblock onload %}
+
+{% block drives %} class="active"{% endblock drives %}
+
+{% block content %}
+    <div id="content" style="text-align: left;">
+        Napędy oraz pamięci logiczne (hd, sd, fd, od etc..)
+        <div class="hl" id="hddlist"></div>
+        Partycje na poszczególnych napędach:
+        <div class="hl" id="partlist"></div>
+        Temperatura poszczególnych dysków (w  &degC;) :
+        <div class="hl" id="hddtemp"></div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,30 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Gedmin</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Bootstrap -->
+        <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+        <link href="{% static "css/style.css" %}" rel="stylesheet">
+    </head>
+    <body>
+        <div id="gedmin">
+        GEDMIN
+        </div>  
+        <div id="login">
+            <form action="/login/" method="POST">
+                {% csrf_token %}
+                <input name="username" type="text" placeholder="Login"><br>
+                <input name="password" type="password" placeholder="Hasło"><br>
+                <input type="submit" value="Zaloguj" style="width: 100px; height: 30px">     
+            </form>
+        </div>
+
+        <div id="logmsg">
+            {{ msg }}
+        </div>
+
+    </body>
+</html>

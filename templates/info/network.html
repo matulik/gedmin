@@ -1,0 +1,22 @@
+{% extends "base_info.html" %}
+{% load staticfiles %}
+
+{% block scripts %}
+    <script src="{% static "js/ajax/info.js" %}"></script>
+{% endblock scripts %}
+{% block onload %} onload="network();"{% endblock onload %}
+
+{% block network %} class="active"{% endblock network %}
+
+{% block content %}
+    <div id="content">
+        Urządzenia sieciowe
+        <div class="hl" id="netdevs"></div>
+        Lokalny adres ip:
+        <div class="hl" id="localip"></div>
+        Globalny adres ip:
+        <div class="hl" id="globalip"></div>
+        Ping do adresu: ... :
+        <div class="hl" id="pinginfo"></div>
+    </div>
+{% endblock content %}

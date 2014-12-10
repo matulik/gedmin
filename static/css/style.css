@@ -1,0 +1,70 @@
+body {
+    background: black;
+    font-family: 'Trebuchet MS', Trebuchet, 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+h1 {
+    color: #EEEEEE;
+    font-size: 40px;
+    margin-left: 10px;
+}
+
+strong {
+    color: white;
+    margin-left: 10px;
+}
+
+.span8 {
+    #text-align: center;
+    width: 70%;
+}
+
+#content {
+    #text-align: center;
+}
+
+#login {
+    padding: 50px 0 0 0;
+    text-align: center;
+}
+
+#gedmin {
+    font-family: Consolas, monaco, monospace;
+    font-size: 80px;
+    color: white;
+    text-align: center;
+    padding-top: 50px;
+}
+
+#logmsg {
+    font-family: Consolas, monaco, monospace;
+    font-size: 12px;
+    color: white;
+    text-align: center;
+    padding-top: 20px;
+}
+
+#time {
+    font-family: Consolas, monaco, monospace;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#time img {
+    width: 50px;
+
+}
+
+.hl {
+    padding-bottom: 20px;
+    font-weight: bold;
+
+}
+
+.hl img {
+    width: 28px;
+}
+
+.center {
+    text-align: center;
+}
