@@ -1,5 +1,5 @@
 var load = "<img src=/static/img/loading.gif>";
-var servertimeinterval = setInterval("servertime();", 1000);
+var servertimeinterval = setInterval("servertime();", 200);
 var systeminterval = setInterval("system();", 1000);
 var drivesinterval = setInterval("drives();", 1000);
 var networkinterval = setInterval("network();", 1000);
@@ -154,10 +154,10 @@ function drives() {
         }
     });
 
+
     if (hddlist == true && partlist == true && hddtemp == true) {
         stopnetwork();
     }
-
 }
 
 function network() {
@@ -237,3 +237,48 @@ function network() {
     }
 
 }
+/* TODO MULTIPLE AJAX FUNCTION?
+var globalipinterval = setInterval("globalip();", 200);
+var pinginfointerval = setInterval("pinginfo();", 200);
+
+function globalip() {
+    $.ajax({
+        type: 'POST',
+        url: '/info_aj/globalip/',
+        async: false,
+        success: function (j) {
+            j = j.replace(/\n/g, "<br>")
+            if (j == "running") {
+                $('#globalip').html(load);
+            }
+            else {
+                $('#globalip').html(j);
+                globalip = true;
+            }
+        }
+    });
+}
+
+function pinginfo() {
+    $.ajax({
+        type: 'POST',
+        url: '/info_aj/pinginfo/',
+        async: false,
+        success: function (j) {
+            j = j.replace(/\n/g, "<br>")
+            if (j == "running") {
+                $('#pinginfo').html(load);
+            }
+            else {
+                pinginfo = true;
+                $('#pinginfo').html(j);
+            }
+        }
+    });
+}
+
+function temp() {
+    stopservertime();
+    pinginfo();
+    globalip();
+}*/

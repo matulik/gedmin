@@ -6,11 +6,11 @@ from urllib import urlopen
 from redis import Redis
 from rq import Queue, use_connection, cancel_job
 
-path = "/home/matulik/projekty/praca/skrypty/"
+path = "/home/matulik/projekty/praca/gedmin/scripts/"
 
 
 # ##Sets function - sets data to files ###
-###Get function - gets date from files only if process isn't running ###
+# ##Get function - gets date from files only if process isn't running ###
 
 # pidArchive function keeps list of PIDs of all commands. 
 # It's will be useful in the future to kills zombie processes
@@ -49,7 +49,7 @@ def pidis_killer():
 
 ## SERVER TIME ##
 def setServerTime():
-	cmd = '/home/matulik/projekty/praca/skrypty/lives.sh servertime'
+	cmd = path + 'lives.sh servertime'
 	ret = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
 	open(path + "temp/ServerTimePid", "w").write(str(ret.pid))
 	pidArchive(ret.pid)
@@ -218,7 +218,17 @@ def setPingInfo(url, count):
 	open(path + "temp/PingPid", "w").write(str(ret.pid))
 	pidArchive(ret.pid)
 	(output, err) = ret.communicate()
-	open(path + "temp/PingOut", "w").write(str(output))
+	file = []
+	n = 0
+	for i in range(0, len(output)):
+		if output[i] == "\n":
+			file.append(output[n:i])
+			n = i
+	_file = file[len(file) - 3:len(file)]
+	ret = ""
+	for i in _file:
+		ret = ret + str(i)
+	open(path + "temp/PingOut", "w").write(str(ret))
 
 
 def getPingInfo():
@@ -226,12 +236,7 @@ def getPingInfo():
 	if os.path.exists("/proc/" + pid):
 		return "running"
 	else:
-		file = open(path + "temp/PingOut", "r").readlines()
-		_file = file[len(file)-3:len(file)]
-		ret = ""
-		for i in _file:
-			ret = ret + str(i)
-		return ret
+		return open(path + "temp/PingOut", "r").read()
 
 
 ## NETWORK DEVS ##

@@ -2,7 +2,7 @@
 function servertime
 {
     while [ 1 ] ; do
-	date '+%X' > /home/matulik/projekty/praca/skrypty/temp/ServerTimeOut
+	date '+%X' > /home/matulik/projekty/praca/gedmin/scripts/temp/ServerTimeOut
 	sleep 1s
     done
 }

@@ -1,3 +1,5 @@
 scripts/temp/
 scripts/red.py
 *.pyc
+db_admin.json
+db.sqlite3
