@@ -22,6 +22,8 @@ urlpatterns = patterns('',
 	url(r'^info/system/$', 'info.views.system'),
 	url(r'^info/drives/$', 'info.views.drives'),
 	url(r'^info/network/$', 'info.views.network'),
+	url(r'^info/cpu/$', 'info.views.cpu'),
+	url(r'^info/mem/$', 'info.views.mem'),
 
     #info_aj #
     url(r'^info_aj/servertime/$','info.views.aj_servertime'),
@@ -35,6 +37,9 @@ urlpatterns = patterns('',
 	url(r'^info_aj/localip/$','info.views.aj_localip'),
 	url(r'^info_aj/globalip/$','info.views.aj_globalip'),
 	url(r'^info_aj/pinginfo/$','info.views.aj_pinginfo'),
+	url(r'^info_aj/procinfo/$','info.views.aj_procinfo'),
+	url(r'^info_aj/meminfo/$','info.views.aj_meminfo'),
+
 
 
 )

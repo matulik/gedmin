@@ -47,8 +47,8 @@
                 <li class="nav-header">Wybierz</li>
                 <li{% block system %}{% endblock system %}><a href="/info/system/">System</a></li>
                 <li{% block drives %}{% endblock drives %}><a href="/info/drives/">Napędy</a></li>
-                <li>CPU</li>
-                <li>Pamięć</li>
+                <li{% block cpu %}{% endblock cpu %}><a href="/info/cpu/">CPU</a></li>
+                <li{% block mem %}{% endblock mem %}><a href="/info/mem/">Pamięć</a></li>
                 <li{% block network %}{% endblock network %}><a href="/info/network/">Sieć</a></li>
             </ul>
         </div>

@@ -47,7 +47,7 @@ def pidis_killer():
 	killZombies()
 
 
-## SERVER TIME ##
+# # SERVER TIME ##
 def setServerTime():
 	cmd = path + 'lives.sh servertime'
 	ret = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
@@ -58,14 +58,14 @@ def setServerTime():
 
 
 def getServerTime():
-	#pid = open(path+"temp/ServerTimePid","r").read()
+	# pid = open(path+"temp/ServerTimePid","r").read()
 	#if os.path.exists("/proc/"+pid):
 	#	return "running"
 	#else:
 	return open(path + "temp/ServerTimeOut", "r").read()
 
 
-## KERNEL INFO ##
+# # KERNEL INFO ##
 def setKernelInfo():
 	open(path + "temp/KernelInfoOut", "w").write("running")
 	ret = subprocess.Popen(["uname", "-r"], stdout=subprocess.PIPE)
@@ -344,11 +344,45 @@ def setMHzInfo():
 		f.write(str(i) + "\n")
 
 
+### TODO MHZ LIVBAR GET ###
 def getMHzInfo():
-	### TODO MHZ LIVBAR GET ###
 	pid = open(path + "temp/MHzInfoPid", "r").read()
 	if os.path.exists("/proc/" + pid):
 		return "running"
 	else:
 		return open(path + "temp/MHzInfoOut", "r").read()
+
+
+def setMemInfo():
+	open(path + "temp/_MemInfoOut", "w").write("running")
+	cmd = path + 'lives.sh meminfo'
+	ret = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
+	open(path + "temp/MemInfoPid", "w").write(str(ret.pid))
+	pidArchive(ret.pid)
+	(output, err) = ret.communicate()
+	open(path + "temp/MemInfoOut", "w").write(str(output))
+
+
+def getMemInfo():
+	file = open(path + "temp/_MemInfoOut", "r").readlines()
+	ret = []
+	if len(file) == 7:
+		for l in file:
+			s=0
+			e=0
+			for i in range(0,len(l)):
+				if l[i].isdigit():
+					if s>0:
+						s=s
+					else:
+						s=i
+				if l[i] == "k":
+					e=i
+			ret.append(l[s:e])
+		mem = ""
+		for i in ret:
+			mem = mem + i + " "
+		return mem.replace("  "," ")
+	else:
+		return False
 
