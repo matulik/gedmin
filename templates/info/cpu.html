@@ -1,0 +1,16 @@
+{% extends "base_info.html" %}
+{% load staticfiles %}
+
+{% block scripts %}
+    <script src="{% static "js/ajax/info.js" %}"></script>
+{% endblock scripts %}
+{% block onload %} onload="cpu();"{% endblock onload %}
+
+{% block cpu %} class="active"{% endblock cpu %}
+
+{% block content %}
+    <div id="content">
+        Model i typ procesora:
+        <div class="hl" id="procinfo"></div>
+    </div>
+{% endblock content %}

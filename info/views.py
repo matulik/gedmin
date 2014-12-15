@@ -55,6 +55,26 @@ def network(request):
 		return render_to_response('info/network.html', context_instance=RequestContext(request))
 
 
+def cpu(request):
+	if not user.authUser(request):
+		msg = u"Nie jesteś zalogowany."
+		return render_to_response('login/errorpage.html', {'msg': msg}, context_instance=RequestContext(request))
+	else:
+		pidis_killer()
+		redis_cpu()
+		return render_to_response('info/cpu.html', context_instance=RequestContext(request))
+
+
+def mem(request):
+	if not user.authUser(request):
+		msg = u"Nie jesteś zalogowany."
+		return render_to_response('login/errorpage.html', {'msg': msg}, context_instance=RequestContext(request))
+	else:
+		pidis_killer()
+		redis_mem()
+		return render_to_response('info/mem.html', context_instance=RequestContext(request))
+
+
 # ## AJAX FUNCTIONS ###
 @csrf_exempt
 def aj_servertime(request):
@@ -149,15 +169,17 @@ def aj_hddtemp(request):
 
 @csrf_exempt
 def aj_netdevs(request):
-	#if request.is_ajax():
+	# if request.is_ajax():
 	resp = getNetworkDevs()
 	if resp == "running":
 		return HttpResponse(resp)
 	else:
 		return HttpResponse(resp)
-#	else:
-#		msg = u"Wejście tutaj nie jest potrzebne"
-#		return render_to_response('login/errorpage.html', {'msg': msg}, context_instance=RequestContext(request))
+
+
+# else:
+# msg = u"Wejście tutaj nie jest potrzebne"
+# return render_to_response('login/errorpage.html', {'msg': msg}, context_instance=RequestContext(request))
 
 
 @csrf_exempt
@@ -199,6 +221,32 @@ def aj_pinginfo(request):
 		return render_to_response('login/errorpage.html', {'msg': msg}, context_instance=RequestContext(request))
 
 
+@csrf_exempt
+def aj_procinfo(request):
+	if request.is_ajax():
+		resp = getProcInfo()
+		if resp == "running":
+			return HttpResponse(resp)
+		else:
+			return HttpResponse(resp)
+	else:
+		msg = u"Wejście tutaj nie jest potrzebne"
+		return render_to_response('login/errorpage.html', {'msg': msg}, context_instance=RequestContext(request))
+
+
+@csrf_exempt
+def aj_meminfo(request):
+	if request.is_ajax():
+		resp = getMemInfo()
+		if resp == "running":
+			return HttpResponse(resp)
+		else:
+			return HttpResponse(resp)
+	else:
+		msg = u"Wejście tutaj nie jest potrzebne"
+		return render_to_response('login/errorpage.html', {'msg': msg}, context_instance=RequestContext(request))
+
+
 # ## REDIS FUNCTIONS ###
 def redis_servertime():
 	use_connection(redis_conn)
@@ -229,6 +277,18 @@ def redis_network():
 	job = q.enqueue(setLocalIP)
 	job = q.enqueue(setGlobalIP)
 	job = q.enqueue(setPingInfo, "www.wp.pl", 10)
+
+
+def redis_cpu():
+	use_connection(redis_conn)
+	q = Queue('high', connection=redis_conn)
+	job = q.enqueue(setProcInfo)
+
+
+def redis_mem():
+	use_connection(redis_conn)
+	q = Queue('high', connection=redis_conn)
+	job = q.enqueue(setMemInfo)
 
 
 '''def jobs_killer():

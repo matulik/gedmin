@@ -1,0 +1,64 @@
+{% extends "base_info.html" %}
+{% load staticfiles %}
+
+{% block scripts %}
+    <script src="{% static "js/ajax/info.js" %}"></script>
+{% endblock scripts %}
+{% block onload %} onload="mem();"{% endblock onload %}
+
+{% block mem %} class="active"{% endblock mem %}
+
+{% block content %}
+    <div id="content">
+        Aktualny stan pamięci RAM:
+        <div style="font-family: Consolas,monaco,monospace;" id="membar"></div>
+        <ul>
+            <li>[ ] Całkowita pamięć:
+                <div style="display: inline;" id="memtotal"></div>
+                MB
+            </li>
+            <li>[-] Wolnej pamięć:
+                <div style="display: inline;" id="memfree"></div>
+                MB
+                (
+                <div style="display: inline;" id="memfree_p"></div>
+                % )
+            </li>
+            <li>[|] Dane aplikacji:
+                <div style="display: inline;" id="memdata"></div>
+                MB
+                (
+                <div style="display: inline;" id="memdata_p"></div>
+                % )
+            </li>
+            <li>[/] Pamięć podręczna dysku (cache):
+                <div style="display: inline;" id="memcach"></div>
+                MB
+                (
+                <div style="display: inline;" id="memcach_p"></div>
+                % )
+            </li>
+            <li>[~] Buffor dysku:
+                <div style="display: inline;" id="membuff"></div>
+                MB
+                (
+                <div style="display: inline;" id="membuff_p"></div>
+                % )
+            </li>
+        </ul>
+        Aktualny stan pamięci SWAP:
+        <div style="font-family: Consolas,monaco,monospace;" id="swapbar"></div>
+        <ul>
+            <li>[ ] Całkowita pamięć:
+                <div style="display: inline;" id="swaptotal"></div>
+                MB
+            </li>
+            <li>[-] Wolnej pamięć:
+                <div style="display: inline;" id="swapfree"></div>
+                MB
+                (
+                <div style="display: inline;" id="swapfree_p"></div>
+                % )
+            </li>
+    </div>
+{% endblock content %}
