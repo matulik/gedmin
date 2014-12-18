@@ -7,14 +7,15 @@
 {% block onload %} onload="system();"{% endblock onload %}
 
 {% block system %} class="active"{% endblock system %}
+{% block infocative %} class="active"{% endblock infocative %}
 
 {% block content %}
     <div id="content">
-            Wersja jądra:
-            <div class="hl" id="kernelinfo"></div>
-            Aktualnie na serwerze jest:
-            <div class="hl" id="serverdate"></div>
-            Uptime:
-            <div class="hl" id="uptime"></div>
+        Wersja jądra:
+        <div class="hl" id="kernelinfo"></div>
+        Aktualnie na serwerze jest:
+        <div class="hl" id="serverdate"></div>
+        Uptime:
+        <div class="hl" id="uptime"></div>
     </div>
 {% endblock content %}

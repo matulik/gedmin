@@ -5,11 +5,14 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
 
 from login.models import User
+from settings.middleware import get_globalparam
 
 from redis import Redis
 from rq import Queue, use_connection
 
 from ino import *
+
+from settings.middleware import get_globalparam
 
 redis_conn = Redis()
 user = User()
@@ -52,7 +55,8 @@ def network(request):
 	else:
 		pidis_killer()
 		redis_network()
-		return render_to_response('info/network.html', context_instance=RequestContext(request))
+		pinghost = get_globalparam("pinghost")
+		return render_to_response('info/network.html', {'pinghost': pinghost}, context_instance=RequestContext(request))
 
 
 def cpu(request):
@@ -276,7 +280,7 @@ def redis_network():
 	job = q.enqueue(setNetworkDevs)
 	job = q.enqueue(setLocalIP)
 	job = q.enqueue(setGlobalIP)
-	job = q.enqueue(setPingInfo, "www.wp.pl", 10)
+	job = q.enqueue(setPingInfo, get_globalparam("pinghost"), 10)
 
 
 def redis_cpu():
