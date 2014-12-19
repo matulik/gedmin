@@ -8,7 +8,7 @@
     <!-- Bootstrap -->
     <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
     <link href="{% static "css/style.css" %}" rel="stylesheet">
-    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="{% static "js/jquery.js" %}"></script>
     <script src="{% static "js/bootstrap.js" %}"></script>
     {% block scripts %}{% endblock scripts %}
 </head>
@@ -27,7 +27,8 @@
     <div class="navbar-inner">
         <div class="container">
             <ul class="nav">
-                <li class="active"><a href="/info/">Informacje ogólne</a></li>
+                <li{% block infocative %}{% endblock infocative %}><a href="/info/">Informacje ogólne</a></li>
+                <li{% block settingsactive %}{% endblock settingsactive %}><a href="/settings/">Ustawienia</a></li>
                 <li><a href="#">#</a></li>
                 <li><a href="/logout/">Wyloguj</a></li>
             </ul>

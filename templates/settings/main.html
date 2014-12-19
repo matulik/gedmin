@@ -1,0 +1,30 @@
+{% extends "base_settings.html" %}
+{% load staticfiles %}
+
+{% block settingsactive %} class="active"{% endblock settingsactive %}
+{% block params %} class="active"{% endblock params %}
+
+{% block scripts %}
+    <script src="{% static "js/ajax/settings.js" %}"></script>
+{% endblock scripts %}
+
+{% block content %}
+
+    Ustawienia aplikacji:<br>
+
+    <div class="valerr">{{ msg }}</div>
+    <form id="params" action="/settings/updateparams/" method="post">
+        {% csrf_token %}
+        <label for="timeout">Czas wygaśnięcia sesji:</label>
+
+        <div class="valerr" id="err_timeout"></div>
+        <input name="timeout" id="timeout" type="text" placeholder="{{ timeout }}"><br>
+        <label for="pinghost">Host dla polecenia ping:</label>
+        <input name="pinghost" id="pinghost" type="text" placeholder="{{ host }}"><br>
+        <label for="maxflogs">Maksymalna liczba niepoprawnych prób zalogowania:</label>
+        <input name="maxflogs" id="maxflogs" type="text" placeholder="{{ maxflogs }}"><br>
+        <input type="submit" value="Zapisz" class="btn btn-default" style="width: 100px; height: 30px">
+    </form>
+
+
+{% endblock content %}

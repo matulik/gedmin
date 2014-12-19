@@ -1,0 +1,24 @@
+{% extends "base_settings.html" %}
+{% load staticfiles %}
+
+{% block settingsactive %} class="active"{% endblock settingsactive %}
+{% block pass %} class="active"{% endblock pass %}
+
+{% block content %}
+
+
+    Zmiana hasła (zalogowany jako : <i>{{ username }}</i> )<br>
+    <div class="valerr">{{ msg }}</div>
+    <form action="/settings/updatepass/" method="post">
+        {% csrf_token %}
+        <label for="oldpass">Aktualne hasło:</label>
+        <input name="oldpass" id="oldpass" type="password" placeholder=""><br>
+        <label for="newpass">Nowe hasło:</label>
+        <input name="newpass" id="newpass" type="password" placeholder=""><br>
+        <label for="reppass">Potwierdź nowe hasło:</label>
+        <input name="reppass" id="reppass" type="password" placeholder=""><br>
+        <input type="submit" value="Zmień hasło" class="btn btn-default" style="width: 100px; height: 30px">
+    </form>
+
+
+{% endblock content %}

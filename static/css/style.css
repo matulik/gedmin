@@ -68,3 +68,10 @@ strong {
 .center {
     text-align: center;
 }
+
+.valerr {
+    font-size: 10px;
+    font-weight: bold;
+    color: red;
+    margin-left: 2px;
+}

@@ -2,16 +2,18 @@
 {% load staticfiles %}
 
 {% block scripts %}
-		<script src = "{% static "js/ajax/info.js" %}"></script>
+    <script src="{% static "js/ajax/info.js" %}"></script>
 {% endblock scripts %}
+
+{% block infocative %} class="active"{% endblock infocative %}
 
 {% block onload %} onload="servertime();"{% endblock onload %}
 
 {% block content %}
-	<div class="center" id="content">
-		Witaj w aplikacji do zdalnego zarządzania serwerem dla Gentoo Linux!
-		Aktualny czas serwera to: 
-		<div id="time"></div>
-		Wybierz z menu interesującą Cie opcję.
-	</div>
+    <div class="center" id="content">
+        Witaj w aplikacji do zdalnego zarządzania serwerem dla Gentoo Linux!
+        Aktualny czas serwera to:
+        <div id="time"></div>
+        Wybierz z menu interesującą Cie opcję.
+    </div>
 {% endblock content %}

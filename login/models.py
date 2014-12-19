@@ -4,12 +4,16 @@ from django.db import models
 from hashlib import sha1
 from datetime import datetime
 
+from settings.middleware import get_globalparam
+
 from ino import pidis_killer
 
+
 """Maksymalna liczba błędnych logowań"""
-max_flogs = 3
+max_flogs = int(get_globalparam("maxflogs"))
 """Czas trwania sesji w sekundach"""
-session_timeout = 10000
+session_timeout = int(get_globalparam("timeout"))
+
 
 class User(models.Model):
 	username = models.CharField(max_length=50, blank=False)
@@ -42,6 +46,7 @@ class User(models.Model):
 		else:
 			global max_flogs
 			if self.flogs > max_flogs:
+				self.inc_flogs()
 				return False
 			else:
 				self.flogs = 0
@@ -80,3 +85,11 @@ class User(models.Model):
 					return False
 			else:
 				return False
+
+
+	def get_user(self, requset):
+		if self.authUser(requset):
+			user = User.objects.get(id=requset.session['id'])
+			return user
+		else:
+			return None

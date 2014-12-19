@@ -7,6 +7,7 @@
 {% block onload %} onload="network();"{% endblock onload %}
 
 {% block network %} class="active"{% endblock network %}
+{% block infocative %} class="active"{% endblock infocative %}
 
 {% block content %}
     <div id="content">
@@ -16,7 +17,7 @@
         <div class="hl" id="localip"></div>
         Globalny adres ip:
         <div class="hl" id="globalip"></div>
-        Ping do adresu: ... :
+        Ping do adresu: {{ pinghost }} :
         <div class="hl" id="pinginfo"></div>
     </div>
 {% endblock content %}

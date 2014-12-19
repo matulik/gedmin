@@ -1,61 +1,61 @@
 {% load staticfiles %}
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Gedmin</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- Bootstrap -->
-        <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
-        <link href="{% static "css/style.css" %}" rel="stylesheet">
-        <script src = "http://code.jquery.com/jquery.js"></script>
-        <script src = "{% static "js/bootstrap.js" %}"></script>
-    </head>
+<head>
+    <meta charset="utf-8">
+    <title>Gedmin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+    <link href="{% static "css/style.css" %}" rel="stylesheet">
+    <script src="{% static "js/jquery.js" %}"></script>
+    <script src="{% static "js/bootstrap.js" %}"></script>
+</head>
 
-    <body>
-        <!--  NAGŁÓWEK  -->
-        <div class="”container”">
-            <h1><a href="#">GEDMIN</a></h1>
-            <strong>Gentoo Linux adminpage</strong>
+<body>
+<!--  NAGŁÓWEK  -->
+<div class="”container”">
+    <h1><a href="#">GEDMIN</a></h1>
+    <strong>Gentoo Linux adminpage</strong>
+</div>
+<!--  /NAGŁÓWEK  -->
+
+
+<!--  MENU  -->
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="container">
+            <ul class="nav">
+                <li class="active"><a href="#">Menu 1</a></li>
+                <li><a href="#">Menu 2</a></li>
+            </ul>
         </div>
-        <!--  /NAGŁÓWEK  -->
+    </div>
+</div>
 
+<!--  /MENU  -->
 
-        <!--  MENU  -->
-        <div class="navbar">
-            <div class="navbar-inner">
-                <div class="container">
-                    <ul class="nav">
-                       <li class="active"><a href="#">Menu 1</a></li>
-                       <li><a href="#">Menu 2</a></li>
-                    </ul>
-                </div>
-            </div>
+<!--  TREŚĆ   -->
+<div class="hero-unit">
+
+    <div class="row">
+        <!--  PODMENU  -->
+        <div class="span2">
+            <ul class="nav nav-list">
+                <li>Podmenu 1</li>
+                <li>Podmenu 2</li>
+            </ul>
         </div>
+        <!--/PODMENU -->
 
-        <!--  /MENU  -->
-
-        <!--  TREŚĆ   -->
-        <div class="hero-unit">
-
-            <div class="row">
-                <!--  PODMENU  -->
-                <div class="span2">
-                    <ul class="nav nav-list">
-                        <li>Podmenu 1</li>
-                        <li>Podmenu 2</li>
-                    </ul>
-                </div>
-                <!--/PODMENU -->
-
-                <!--TREŚĆ STRONY -->
-                <div class = "span8">
-                    Treść
-                </div>
-                <!--/TREŚĆ STRONY -->
-
-            </div>
+        <!--TREŚĆ STRONY -->
+        <div class="span8">
+            Treść
         </div>
-        <!--/TREŚĆ -->
-    </body>
+        <!--/TREŚĆ STRONY -->
+
+    </div>
+</div>
+<!--/TREŚĆ -->
+</body>
 </html>

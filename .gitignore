@@ -1,5 +1,6 @@
 scripts/temp/
 scripts/red.py
 *.pyc
+.idea/
 db_admin.json
 db.sqlite3
