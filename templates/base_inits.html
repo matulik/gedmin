@@ -27,9 +27,9 @@
     <div class="navbar-inner">
         <div class="container">
             <ul class="nav">
-                <li{% block infocative %}{% endblock infocative %}><a href="/info/">Informacje ogólne</a></li>
+                <li{% block infocative %}{% endblock infocative %}><a href="/info">Informacje ogólne</a></li>
                 <li{% block initssactive %}{% endblock initssactive %}><a href="/inits/">Deamony/Usługi</a></li>
-                <li{% block settingsactive %}{% endblock settingsactive %}><a href="/settings/">Ustawienia</a></li>
+                <li{% block settingsactive %}{% endblock settingsactive %}><a href="/settings">Ustawienia</a></li>
                 <li><a href="#">#</a></li>
                 <li><a href="/logout/">Wyloguj</a></li>
             </ul>
@@ -47,8 +47,8 @@
         <div class="span4">
             <ul class="nav nav-list">
                 <li class="nav-header">Wybierz</li>
-                <li{% block params %}{% endblock params %}><a href="/settings/">Zmienne</a></li>
-                <li{% block pass %}{% endblock pass %}><a href="/settings/changepass/">Zmiana hasła</a></li>
+                <li{% block deamons %}{% endblock deamons %}><a href="/inits/">Usługi domyślne</a></li>
+
             </ul>
 
         </div>

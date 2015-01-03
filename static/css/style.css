@@ -75,3 +75,21 @@ strong {
     color: red;
     margin-left: 2px;
 }
+
+.dbuts form {
+    display: inline;
+}
+
+.deamons {
+    display: inline;
+}
+
+/*
+.dname {
+    margin-left: 30px;
+    margin-top: 12px;
+}
+
+.dstat {
+    margin-left: 30px;
+}*/

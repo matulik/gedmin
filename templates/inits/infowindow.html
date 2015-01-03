@@ -1,0 +1,25 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Gedmin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="{% static "js/ajax/infowindow.js" %}"></script>
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+    <link href="{% static "css/style.css" %}" rel="stylesheet">
+    <script src="{% static "js/jquery.js" %}"></script>
+
+</head>
+
+<body>
+    <div id="login">
+        {{ deamon }}<br>
+        <div id="info"></div>
+            <button onclick="closewindow();" class="btn btn-default btn-lg" style="margin-top:20px;">
+            Zamknij
+            </button>
+    </div>
+</body>
+
+</html>
