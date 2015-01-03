@@ -4,26 +4,18 @@ from django.contrib import admin
 
 admin.autodiscover()
 
-urlpatterns = patterns('',
-					   # Examples:
-					   # url(r'^$', 'gedmin.views.home', name='home'),
-					   # url(r'^blog/', include('blog.urls')),  # url(r'^admin/', include(admin.site.urls)),
-
-					   # login #
+urlpatterns = patterns('',  # Examples:  # url(r'^$', 'gedmin.views.home', name='home'),
+					   # url(r'^blog/', include('blog.urls')),  # url(r'^admin/', include(admin.site.urls)),  # login #
 					   url(r'^$', 'login.views.main'),
 					   url(r'^login/$', 'login.views.login'),
 					   url(r'^logout/$', 'login.views.logout'),
-					   url(r'^errorpage/$', 'login.views.errorpage'),
-
-					   # info #
+					   url(r'^errorpage/$', 'login.views.errorpage'),  # info #
 					   url(r'^info/$', 'info.views.main'),
 					   url(r'^info/system/$', 'info.views.system'),
 					   url(r'^info/drives/$', 'info.views.drives'),
 					   url(r'^info/network/$', 'info.views.network'),
 					   url(r'^info/cpu/$', 'info.views.cpu'),
-					   url(r'^info/mem/$', 'info.views.mem'),
-
-					   #info_aj #
+					   url(r'^info/mem/$', 'info.views.mem'),  # info_aj #
 					   url(r'^info_aj/servertime/$', 'info.views.aj_servertime'),
 					   url(r'^info_aj/kernelinfo/$', 'info.views.aj_kernelinfo'),
 					   url(r'^info_aj/serverdate/$', 'info.views.aj_serverdate'),
@@ -40,6 +32,11 @@ urlpatterns = patterns('',
 					   url(r'^settings/$', 'settings.views.main'),
 					   url(r'^settings/updateparams/$', 'settings.views.updateparams'),
 					   url(r'^settings/changepass/$', 'settings.views.changepass'),
-					   url(r'^settings/updatepass/$', 'settings.views.updatepass'),
-
+					   url(r'^settings/updatepass/$', 'settings.views.updatepass'),  # inits #
+					   url(r'^inits/$', 'inits.views.main'),
+					   url(r'^inits/startD/$', 'inits.views.startD'),
+					   url(r'^inits/stopD/$', 'inits.views.stopD'),
+					   url(r'^inits/restartD/$', 'inits.views.restartD'),  #inits_aj #
+					   url(r'^inits_aj/deamons/$', 'inits.views.aj_deamons'),
+					   url(r'^inits_aj/deamonoutput/$', 'inits.views.aj_deamonoutput'),
 )

@@ -15,6 +15,9 @@ path = "/home/matulik/projekty/praca/gedmin/scripts/"
 # pidArchive function keeps list of PIDs of all commands. 
 # It's will be useful in the future to kills zombie processes
 
+
+# ## INFO ###
+
 def pidArchive(pid):
 	file = open(path + "temp/pidArchive", "a")
 	file.write(str(pid) + "\n")
@@ -59,7 +62,7 @@ def setServerTime():
 
 def getServerTime():
 	# pid = open(path+"temp/ServerTimePid","r").read()
-	#if os.path.exists("/proc/"+pid):
+	# if os.path.exists("/proc/"+pid):
 	#	return "running"
 	#else:
 	return open(path + "temp/ServerTimeOut", "r").read()
@@ -83,7 +86,7 @@ def getKernelInfo():
 		return open(path + "temp/KernelInfoOut", "r").read()
 
 
-## SERVER DATE ##
+# # SERVER DATE ##
 def setServerDate():
 	open(path + "temp/ServerDateOut", "w").write("running")
 	ret = subprocess.Popen(["date"], stdout=subprocess.PIPE)
@@ -368,21 +371,93 @@ def getMemInfo():
 	ret = []
 	if len(file) == 7:
 		for l in file:
-			s=0
-			e=0
-			for i in range(0,len(l)):
+			s = 0
+			e = 0
+			for i in range(0, len(l)):
 				if l[i].isdigit():
-					if s>0:
-						s=s
+					if s > 0:
+						s = s
 					else:
-						s=i
+						s = i
 				if l[i] == "k":
-					e=i
+					e = i
 			ret.append(l[s:e])
 		mem = ""
 		for i in ret:
 			mem = mem + i + " "
-		return mem.replace("  "," ")
+		return mem.replace("  ", " ")
 	else:
 		return False
+
+
+### INITS ###
+
+def setDeamons():
+	#open(path + "temp/setDeamonsOut", "w").write("running")
+	cmd = "rc-config show --unused default"
+	ret = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
+	open(path + "temp/setDeamonsPid", "w").write(str(ret.pid))
+	pidArchive(ret.pid)
+	(output, err) = ret.communicate()
+	open(path + "temp/setDeamonsOut", "w").write(str(output))
+
+
+def getDeamons():
+	file = open(path + "temp/setDeamonsOut", "r").readlines()
+	deamons = []
+
+	for f in file:
+		if f[0:2] == "  ":
+			i = 0
+			for c in range(2, len(f)):
+				if f[c] == " ":
+					i = c
+					break
+			d = f[2:i]
+			s = f[29:len(f) - 2]
+			deamons.append([d, s])
+	ret = ""
+	for d in deamons:
+		ret = ret + d[0] + " " + d[1] + "\n"
+
+	return ret
+
+
+def getSSRinfo(name):
+	file = open(path + "temp/" + name + "_Out", "r").read()
+	if file:
+		return file
+	else:
+		return ""
+
+
+def startDeamon(name):
+	cmd = "sudo /etc/init.d/" + name + " start"
+	ret = subprocess.Popen(cmd, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+	(output, err) = ret.communicate()
+	open(path + "temp/" + name + "_Out", "w").write(str(output))
+
+
+def stopDeamon(name):
+	cmd = "sudo /etc/init.d/" + name + " stop"
+	ret = subprocess.Popen(cmd, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+	(output, err) = ret.communicate()
+	open(path + "temp/" + name + "_Out", "w").write(str(output))
+
+
+def restartDeamon(name):
+	cmd = "sudo /etc/init.d/" + name + " restart"
+	ret = subprocess.Popen(cmd, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+	(output, err) = ret.communicate()
+	open(path + "temp/" + name + "_Out", "w").write(str(output))
+
+
+
+
+
+
+
+
+
+
 

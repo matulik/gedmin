@@ -1,0 +1,17 @@
+{% extends "base_inits.html" %}
+{% load staticfiles %}
+
+{% block initssactive %} class="active"{% endblock initssactive %}
+{% block deamons %} class="active"{% endblock deamons %}
+
+{% block scripts %}
+    <script src="{% static "js/ajax/inits.js" %}"></script>
+{% endblock scripts %}
+
+{% block content %}
+
+    <div id="deamons">
+
+    </div>
+
+{% endblock content %}
