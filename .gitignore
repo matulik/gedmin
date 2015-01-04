@@ -5,4 +5,5 @@ scripts/red.py
 db_admin.json
 db.sqlite3
 settings/settings
+settings/logsfiles
 static/js/jquery.js

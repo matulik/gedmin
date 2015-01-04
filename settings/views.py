@@ -6,8 +6,11 @@ from django.http import HttpResponse
 
 from os.path import exists
 
-from settings.middleware import set_globalparam, get_globalparam
+from settings.middleware import set_globalparam, get_globalparam, set_logsfiles, get_logfiles
 from login.models import User
+
+from os.path import isfile
+
 
 user = User()
 
@@ -110,5 +113,61 @@ def updatepass(request):
 			msg = u"Coś poszło nie tak"
 			return render_to_response('login/errorpage.html', {'msg': msg},
 									  context_instance=RequestContext(request))
+
+
+def logs(request):
+	if not user.authUser(request):
+		msg = u"Nie jesteś zalogowany."
+		return render_to_response('login/errorpage.html', {'msg': msg}, context_instance=RequestContext(request))
+	else:
+		files = get_logfiles()
+		tail = get_globalparam("tail")
+		return render_to_response('settings/logs.html', {'files': files, "tail": tail},
+								  context_instance=RequestContext(request))
+
+
+def logsupdate(request):
+	if not user.authUser(request):
+		msg = u"Nie jesteś zalogowany."
+		return render_to_response('login/errorpage.html', {'msg': msg}, context_instance=RequestContext(request))
+	else:
+		if request.method == "POST":
+			if request.POST["text"]:
+				f = request.POST["text"]
+				n = 0
+				files = []
+				for i in range(0, len(f)):
+					if f[i] == "\n":
+						if isfile(f[n:i - 1]):
+							files.append(f[n:i - 1])
+						n = i + 1
+						continue
+					if i == len(f) - 1 and f[i] != "\n":
+						if isfile(f[n:i + 1]):
+							files.append(f[n:i + 1])
+						break
+				set_logsfiles(files)
+				return redirect('/settings/logs')
+		else:
+			msg = u"Coś poszło nie tak"
+			return render_to_response('login/errorpage.html', {'msg': msg}, context_instance=RequestContext(request))
+
+
+def tailupdate(request):
+	if not user.authUser(request):
+		msg = u"Nie jesteś zalogowany."
+		return render_to_response('login/errorpage.html', {'msg': msg}, context_instance=RequestContext(request))
+	else:
+		if request.method == "POST":
+			t = request.POST["tail"]
+			if t.isdecimal():
+				set_globalparam("tail", str(t))
+				return redirect('/settings/logs')
+			else:
+				msg = "Podałeś złą wartość pokazywanych linii."
+				files = get_logfiles()
+				tail = get_globalparam("tail")
+				return render_to_response('settings/logs.html', {'files': files, "tail": tail, "msg": msg},
+										  context_instance=RequestContext(request))
 
 

@@ -1,0 +1,24 @@
+{% extends "base_logs.html" %}
+{% load staticfiles %}
+
+{% block logs %} class="active"{% endblock logs %}
+{% block default %} class="active"{% endblock default %}
+
+{% block scripts %}
+    <script src="{% static "js/ajax/logs.js" %}"></script>
+{% endblock scripts %}
+
+{% block content %}
+
+    Aktualna wartość liczby ostatnich linii: {{ tail }} <a href="/settings/logs/#tailupdate">(zmień)</a> <br>
+    Aktualna lista plików możliwych do przeglądania: <a href="/settings/logs/#filesupdate">(zmień)</a>
+    <h6>(Kliknij na nazwę, aby zobaczyć zawartość plików</h6>
+
+    {% for i,n,k in list %}
+
+        <div id="log_{{ i }}" class="logtag">{{ n }}</div>
+        <div id="log_{{ i }}_cont" class="hd">{{ k|linebreaksbr }}</div>
+
+    {% endfor %}
+
+{% endblock content %}

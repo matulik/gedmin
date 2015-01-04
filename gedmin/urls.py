@@ -5,7 +5,8 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',  # Examples:  # url(r'^$', 'gedmin.views.home', name='home'),
-					   # url(r'^blog/', include('blog.urls')),  # url(r'^admin/', include(admin.site.urls)),  # login #
+					   # url(r'^blog/', include('blog.urls')),  # url(r'^admin/', include(admin.site.urls)),
+					   #  # login #
 					   url(r'^$', 'login.views.main'),
 					   url(r'^login/$', 'login.views.login'),
 					   url(r'^logout/$', 'login.views.logout'),
@@ -32,11 +33,15 @@ urlpatterns = patterns('',  # Examples:  # url(r'^$', 'gedmin.views.home', name=
 					   url(r'^settings/$', 'settings.views.main'),
 					   url(r'^settings/updateparams/$', 'settings.views.updateparams'),
 					   url(r'^settings/changepass/$', 'settings.views.changepass'),
-					   url(r'^settings/updatepass/$', 'settings.views.updatepass'),  # inits #
+					   url(r'^settings/updatepass/$', 'settings.views.updatepass'),
+					   url(r'^settings/logs/$', 'settings.views.logs'),
+					   url(r'^settings/logsupdate/$', 'settings.views.logsupdate'),
+					   url(r'^settings/tailupdate/$', 'settings.views.tailupdate'),  # inits #
 					   url(r'^inits/$', 'inits.views.main'),
 					   url(r'^inits/startD/$', 'inits.views.startD'),
 					   url(r'^inits/stopD/$', 'inits.views.stopD'),
-					   url(r'^inits/restartD/$', 'inits.views.restartD'),  #inits_aj #
+					   url(r'^inits/restartD/$', 'inits.views.restartD'),  # inits_aj #
 					   url(r'^inits_aj/deamons/$', 'inits.views.aj_deamons'),
-					   url(r'^inits_aj/deamonoutput/$', 'inits.views.aj_deamonoutput'),
+					   url(r'^inits_aj/deamonoutput/$', 'inits.views.aj_deamonoutput'),  # logs #
+					   url(r'^logs/$', 'logs.views.main'),
 )
