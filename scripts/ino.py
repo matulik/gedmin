@@ -33,7 +33,6 @@ def killZombies():
 			cmd = 'sudo kill -9 ' + str(i)
 			ret = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
 			(output, err) = ret.communicate()
-			print output
 	file = open(path + "temp/pidArchive", "w")
 	file.write("")
 	file.close()
@@ -63,7 +62,7 @@ def setServerTime():
 def getServerTime():
 	# pid = open(path+"temp/ServerTimePid","r").read()
 	# if os.path.exists("/proc/"+pid):
-	#	return "running"
+	# return "running"
 	#else:
 	return open(path + "temp/ServerTimeOut", "r").read()
 
@@ -104,7 +103,7 @@ def getServerDate():
 		return open(path + "temp/ServerDateOut", "r").read()
 
 
-## UPTIME ##
+# # UPTIME ##
 def setUptime():
 	open(path + "temp/UptimeOut", "w").write("running")
 	ret = subprocess.Popen(["uptime", "-p"], stdout=subprocess.PIPE)
@@ -215,7 +214,6 @@ def getHDDTemps():
 def setPingInfo(url, count):
 	open(path + "temp/PingOut", "w").write("running")
 	cmd = "ping -c " + str(count) + " " + str(url)
-	print cmd
 	ret = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
 	#ret = subprocess.Popen(["ping", "-c 3", "wp.pl"], stdout=subprocess.PIPE)
 	open(path + "temp/PingPid", "w").write(str(ret.pid))
@@ -452,6 +450,13 @@ def restartDeamon(name):
 	open(path + "temp/" + name + "_Out", "w").write(str(output))
 
 
+### LOGS ###
+
+def get_file(filename, tail):
+	cmd = "tail -n " + tail + " " + filename
+	ret = subprocess.Popen(cmd, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+	(output, err) = ret.communicate()
+	return output
 
 
 

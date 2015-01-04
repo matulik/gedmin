@@ -40,6 +40,7 @@ INSTALLED_APPS = (
 'info',
 'settings',
 'inits',
+'logs',
 )
 
 MIDDLEWARE_CLASSES = (

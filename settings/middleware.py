@@ -2,10 +2,11 @@
 from os.path import exists
 
 default_params = {
-	"path": "/home/matulik/projekty/praca/gedmin/settings/",
-	"timeout": "300",
-	"pinghost": "google.com",
-	"maxflogs": "3",
+"path": "/home/matulik/projekty/praca/gedmin/settings/",
+"timeout": "300",
+"pinghost": "google.com",
+"maxflogs": "3",
+"tail": "50",
 }
 
 
@@ -64,4 +65,25 @@ def set_globalparam(param, value):
 	else:
 		file = open(default_params["path"] + "settings", "a")
 		file.write(str(param) + "=" + str(value))
+
+
+def set_logsfiles(list):
+	file = open(default_params["path"] + "logsfiles", "w")
+	f = ""
+	for i in list:
+		if i == "":
+			continue
+		f = f + i + "\n"
+	file.write(f)
+
+
+def get_logfiles():
+	if exists(default_params["path"] + "settings"):
+		file = open(default_params["path"] + "logsfiles", "r").readlines()
+		f = []
+		for i in file:
+			f.append(i.replace("\n", ""))
+		return f
+	else:
+		return False
 

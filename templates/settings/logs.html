@@ -1,0 +1,28 @@
+{% extends "base_settings.html" %}
+{% load staticfiles %}
+
+{% block settingsactive %} class="active"{% endblock settingsactive %}
+{% block logs_s %} class="active"{% endblock logs_s %}
+
+{% block content %}
+
+    Ustaw, które pliki chcesz aby przeglądać w zakładce "Logi":<br>
+    <h5>Uwaga! Wszystkie pliki, które nie jeszcze nie istnieją nie zostaną zapisane!</h5><br>
+    <textarea name="text" id="text" class="form-control" form="logform">{% for i in files %}{{ i }}
+    {% endfor %}</textarea>
+    <a name="filesupdate"></a>
+    <form action="/settings/logsupdate/" method="post" id="logform">
+        {% csrf_token %}
+        <input type="submit" value="Zapisz" class="btn btn-default" style="width: 100px; height: 30px">
+    </form>
+
+    <a name="tailupdate"></a>
+    <div class="valerr">{{ msg }}</div>
+    Ilość lini wyświetlanych dla każdego pliku:
+    <form action="/settings/tailupdate/" method="post">
+        {% csrf_token %}
+        <input name="tail" id="tail" type="text" placeholder="{{ tail }}"><br>
+        <input type="submit" value="Zapisz" class="btn btn-default" style="width: 100px; height: 30px">
+    </form>
+
+{% endblock content %}
