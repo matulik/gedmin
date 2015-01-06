@@ -1,0 +1,23 @@
+{% extends "base_portmin.html" %}
+{% load staticfiles %}
+
+{% block portage %} class="active"{% endblock portage %}
+{% block confiles %} class="active"{% endblock confiles %}
+
+{% block scripts %}
+    <script src="{% static "js/ajax/confiles.js" %}"></script>
+{% endblock scripts %}
+
+{% block content %}
+
+    Ze względów bezpieczeństwa możliwe jest jedynie przeglądanie plików konfiguracyjnych. <br>
+    Kliknij na wybrany plik, aby zobaczyć zawartość.<br>
+
+    {% for i,n,k in list %}
+
+        <div id="con_{{ i }}" class="logtag">{{ n }}</div>
+        <div id="con_{{ i }}_cont" class="hd">{{ k|linebreaksbr }}</div>
+
+    {% endfor %}
+
+{% endblock content %}

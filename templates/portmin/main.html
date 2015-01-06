@@ -1,0 +1,25 @@
+{% extends "base_portmin.html" %}
+{% load staticfiles %}
+
+{% block portage %} class="active"{% endblock portage %}
+{% block default %} class="active"{% endblock default %}
+
+{% block scripts %}
+    <script src="{% static "js/ajax/portmin.js" %}"></script>
+{% endblock scripts %}
+
+{% block content %}
+
+    Uwaga! Jeżeli wyłączysz tą strone wybrane akcje zostaną zatrzymane! <br>
+
+    <div id="portmin_sync" class="portmin_cmd">emerge --sync</div>
+    <div id="syncload" class="load"></div>
+    <div id="syncout"></div>
+
+    <br>
+
+    <div id="portmin_upd" class="portmin_cmd">emerge --update --deep --neuwse world</div>
+    <div id="updload" class="load"></div>
+    <div id="updout"></div>
+
+{% endblock content %}

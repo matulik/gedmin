@@ -124,6 +124,65 @@ textarea {
     font-size: 16px;
 }
 
+.logtaghl {
+    font-weight: bold;
+}
+
 h6 {
     margin-top: -5px;
+}
+
+.portmin_cmd {
+    font-family: Consolas, monaco, monospace;
+    color: yellow;
+    background-color: #000000;
+    display: inline-block;
+    padding: 8px 5px 2px 5px;
+    border-radius: 2px;
+    margin-top: 10px;
+    height: 40px;
+}
+
+.highlited {
+    background-color: darkslategray;
+    height: 40px;
+}
+
+.running {
+    background-color: red;
+    height: 40px;
+}
+
+.load {
+    display: inline-block;
+}
+
+.load img {
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+}
+
+#syncout {
+    display: none;
+    background: cyan;
+    font-size: 10px;
+    font-family: Consolas, monaco, monospace;
+    border-radius: 10px;
+    padding-left: 5px;
+    overflow: hidden;
+    padding-bottom: 10px;
+    padding-top: 5px;
+}
+
+#updout {
+    display: none;
+    background: cyan;
+    font-size: 10px;
+    font-family: Consolas, monaco, monospace;
+    border-radius: 10px;
+    padding-left: 5px;
+    overflow: hidden;
+    padding-bottom: 10px;
+    padding-top: 5px;
 }

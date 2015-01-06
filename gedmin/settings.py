@@ -31,26 +31,27 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
-'django.contrib.auth',
-'django.contrib.contenttypes',
-'django.contrib.sessions',
-'django.contrib.messages',
-'django.contrib.staticfiles',
-'login',
-'info',
-'settings',
-'inits',
-'logs',
+	'django.contrib.auth',
+	'django.contrib.contenttypes',
+	'django.contrib.sessions',
+	'django.contrib.messages',
+	'django.contrib.staticfiles',
+	'login',
+	'info',
+	'settings',
+	'inits',
+	'logs',
+	'portmin',
 )
 
 MIDDLEWARE_CLASSES = (
-'django.contrib.sessions.middleware.SessionMiddleware',
-'django.middleware.common.CommonMiddleware',
-'django.middleware.csrf.CsrfViewMiddleware',
-'django.contrib.auth.middleware.AuthenticationMiddleware',
-'django.contrib.messages.middleware.MessageMiddleware',
-'django.middleware.clickjacking.XFrameOptionsMiddleware',
-'django.views.decorators.csrf._EnsureCsrfCookie',
+	'django.contrib.sessions.middleware.SessionMiddleware',
+	'django.middleware.common.CommonMiddleware',
+	'django.middleware.csrf.CsrfViewMiddleware',
+	'django.contrib.auth.middleware.AuthenticationMiddleware',
+	'django.contrib.messages.middleware.MessageMiddleware',
+	'django.middleware.clickjacking.XFrameOptionsMiddleware',
+	'django.views.decorators.csrf._EnsureCsrfCookie',
 )
 
 ROOT_URLCONF = 'gedmin.urls'
@@ -62,10 +63,10 @@ WSGI_APPLICATION = 'gedmin.wsgi.application'
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
 DATABASES = {
-'default': {
-'ENGINE': 'django.db.backends.sqlite3',
-'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-}
+	'default': {
+		'ENGINE': 'django.db.backends.sqlite3',
+		'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+	}
 }
 
 # Internationalization
@@ -90,7 +91,7 @@ DEFAULT_CHARSET = 'utf-8'
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-os.path.join(BASE_DIR, "static"),
+	os.path.join(BASE_DIR, "static"),
 )
 
 MEDIA_ROOT = '/home/matulik/projekty/praca/gedmin/media'

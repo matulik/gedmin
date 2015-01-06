@@ -6,7 +6,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',  # Examples:  # url(r'^$', 'gedmin.views.home', name='home'),
 					   # url(r'^blog/', include('blog.urls')),  # url(r'^admin/', include(admin.site.urls)),
-					   #  # login #
+					   # # login #
 					   url(r'^$', 'login.views.main'),
 					   url(r'^login/$', 'login.views.login'),
 					   url(r'^logout/$', 'login.views.logout'),
@@ -43,5 +43,13 @@ urlpatterns = patterns('',  # Examples:  # url(r'^$', 'gedmin.views.home', name=
 					   url(r'^inits/restartD/$', 'inits.views.restartD'),  # inits_aj #
 					   url(r'^inits_aj/deamons/$', 'inits.views.aj_deamons'),
 					   url(r'^inits_aj/deamonoutput/$', 'inits.views.aj_deamonoutput'),  # logs #
-					   url(r'^logs/$', 'logs.views.main'),
+					   url(r'^logs/$', 'logs.views.main'),  # portmin #
+					   url(r'^portmin/$', 'portmin.views.main'),
+					   url(r'^portmin/confiles/$', 'portmin.views.confiles'),  # portmin_aj #
+					   url(r'^portmin_aj/sync/$', 'portmin.views.aj_sync'),
+					   url(r'^portmin_aj/setsync/$', 'portmin.views.aj_setsync'),
+					   url(r'^portmin_aj/upd/$', 'portmin.views.aj_upd'),
+					   url(r'^portmin_aj/setupd/$', 'portmin.views.aj_setupd'),
+
+
 )

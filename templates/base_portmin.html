@@ -27,11 +27,11 @@
     <div class="navbar-inner">
         <div class="container">
             <ul class="nav">
-                <li{% block infocative %}{% endblock infocative %}><a href="/info">Informacje ogólne</a></li>
+                <li{% block infocative %}{% endblock infocative %}><a href="/info/">Informacje ogólne</a></li>
                 <li{% block initssactive %}{% endblock initssactive %}><a href="/inits/">Deamony/Usługi</a></li>
                 <li{% block logs %}{% endblock logs %}><a href="/logs/">Logi</a></li>
                 <li{% block portage %}{% endblock portage %}><a href="/portmin/">Portage</a></li>
-                <li{% block settingsactive %}{% endblock settingsactive %}><a href="/settings">Ustawienia</a></li>
+                <li{% block settingsactive %}{% endblock settingsactive %}><a href="/settings/">Ustawienia</a></li>
                 <li><a href="#">#</a></li>
                 <li><a href="/logout/">Wyloguj</a></li>
             </ul>
@@ -49,7 +49,9 @@
         <div class="span4">
             <ul class="nav nav-list">
                 <li class="nav-header">Wybierz</li>
-                <li{% block deamons %}{% endblock deamons %}><a href="/inits/">Usługi domyślne</a></li>
+                <li{% block default %}{% endblock default %}><a href="/portmin/">Domyślne funkcje</a></li>
+                <li{% block confiles %}{% endblock confiles %}><a href="/portmin/confiles/">Pliki konfiguracyjne</a>
+                </li>
 
             </ul>
 
