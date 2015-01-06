@@ -63,7 +63,7 @@ def getServerTime():
 	# pid = open(path+"temp/ServerTimePid","r").read()
 	# if os.path.exists("/proc/"+pid):
 	# return "running"
-	#else:
+	# else:
 	return open(path + "temp/ServerTimeOut", "r").read()
 
 
@@ -121,7 +121,7 @@ def getUptime():
 		return open(path + "temp/UptimeOut", "r").read()
 
 
-## DRIVE LIST ##
+# # DRIVE LIST ##
 def setDrivesList():
 	open(path + "temp/DrivesListOut", "w").write("running")
 	ret = subprocess.Popen(["lsblk", "-S"], stdout=subprocess.PIPE)
@@ -459,10 +459,54 @@ def get_file(filename, tail):
 	return output
 
 
+### PORTMIN ###
+
+def set_portageSync():
+	open(path + "temp/setPortageSyncOut", "w").write("running")
+	cmd = "emerge --sync"
+	ret = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
+	open(path + "temp/setPortageSyncPid", "w").write(str(ret.pid))
+	pidArchive(ret.pid)
+	(output, err) = ret.communicate()
+	open(path + "temp/setPortageSyncOut", "w").write(str(output))
 
 
+def set_portageSyncNothing():
+	open(path + "temp/setPortageSyncOut", "w").write("nothing")
 
 
+def get_portageSync():
+	f = open(path + "temp/setPortageSyncOut", "r").read()
+	if f == "running":
+		return "running"
+	elif f == "nothing":
+		return "nothing"
+	else:
+		return f
+
+
+def set_portageUpd():
+	open(path + "temp/setPortageUpdOut", "w").write("running")
+	cmd = "emerge --update --ask --deep --newuse world"
+	ret = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
+	open(path + "temp/setPortageUpdPid", "w").write(str(ret.pid))
+	pidArchive(ret.pid)
+	(output, err) = ret.communicate()
+	open(path + "temp/setPortageUpdOut", "w").write(str(output))
+
+
+def set_portageUpdNothing():
+	open(path + "temp/setPortageUpdOut", "w").write("nothing")
+
+
+def get_portageUpd():
+	f = open(path + "temp/setPortageUpdOut", "r").read()
+	if f == "running":
+		return "running"
+	elif f == "nothing":
+		return "nothing"
+	else:
+		return f
 
 
 
